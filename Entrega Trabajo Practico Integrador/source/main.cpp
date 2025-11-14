@@ -6,22 +6,25 @@
 #include <cstdlib>
 #include <time.h>
 
+#include "Jugador.hpp" 
+
+
+
 int main(void)
 {
     // Ventana de 1024x768 píxeles con un título personalizado
     InitWindow(1024, 768, "¡Despierta, Mavis! - Leonel Tomas Mc Cormack");
     
+    Jugador* J1 = new Jugador();
     // Iniciamos el dispocitivo de audio
     InitAudioDevice();
 
-    // Cargamos la imgagen
-    Texture2D imagen = LoadTexture("Assets/knight.png");
+
 
     // Cargamos el sonido para el salto
     Sound jump = LoadSound("Assets/jump.wav");
 
-    // Aplicamos un filtro bilineal a la textura
-    SetTextureFilter(imagen, TEXTURE_FILTER_BILINEAR);
+
     
     // Cargamos la textura del cursor, aplicamos filtro y ocultamos el cursor del sistema
     Texture2D cursor = LoadTexture("Assets/crosshair.png");
@@ -46,20 +49,7 @@ int main(void)
     Vector2 Boton = { 970, 50 };
 
 
-    // Posicion inicial de la nave 1
-    Vector2 posImagen1 = {150, (768 / 2)};
 
-    // velocidad que se le asignara al personaje
-    Vector2 velocidad = { 5.0f, 100.0f };
-
-    // Color del personaje
-    Color colImagen1 = WHITE;
-
-    // Rotacion del personaje
-    float rotImagen1 = 0.0f;
-  
-    // Escalado del personaje
-    float escImagen1 = 0.15f;
 
 
     // Configuracion framerate
@@ -80,34 +70,18 @@ int main(void)
             CloseWindow();
         }
 
+        J1->caminar();
+        J1->saltar();
+
         // Buffer de teclado que reinicia la posicion del personaje al presionar la R
         if (IsKeyPressed(KEY_R)) {
-            posImagen1 = { 150, (768 / 2) };
+            //personaje = { 150, (768 / 2) };
         }
 
         // Buffer de teclado que muestra y oculta mensaje del sistema
         if (IsKeyPressed(KEY_M)) {
             contador++;
         }
-
-        // Aplicamos movimiento horizontal  (izq y der ) sobre el pesonaje utilizando flecha izquierda y derecha 
-        if (IsKeyDown(KEY_LEFT)) {
-            posImagen1.x -= velocidad.x;
-        }
-        if (IsKeyDown(KEY_RIGHT)) {
-            posImagen1.x += velocidad.x;
-        }
-
-        // Aplicamos salto simple
-        if (IsKeyPressed(KEY_SPACE)) {
-            PlaySound(jump);
-            posImagen1.y -= velocidad.y;
-        }
-        else if (posImagen1.y <= (768 / 2)) {
-
-            posImagen1.y += velocidad.y * deltaTime;
-        }
-
 
         // Captura de eventos del mouse
             
@@ -134,12 +108,12 @@ int main(void)
         if (contador % 2 == 0) {
             DrawText("Caballero", 2, 0, 25, BLACK);
             DrawText("Haz click izquierdo sobre el circulo negro para cambiar el color del fondo", 2, 25, 15, BLACK);
-            DrawText(TextFormat("Posicion del caballero: %.1f, %.1f", posImagen1.x, posImagen1.y), 2, 70, 15, BLACK);
+            //DrawText(TextFormat("Posicion del caballero: %.1f, %.1f", posJugador.x, posJugador.y), 2, 70, 15, BLACK);
             DrawText(TextFormat("Posicion del mouse: X: %.2f Y: %.2f", windowPosition.x, windowPosition.y), 2, 50, 15, BLACK);
         }
 
         // Dibujamos la imagen para el caballero con sus parametros personalizados
-        DrawTextureEx(imagen, posImagen1, rotImagen1, escImagen1, colImagen1);
+        J1->dibujarPersonaje();
 
         // Dibujamos el boton para cambiar el color del fondo
         DrawCircle(Boton.x, Boton.y, r, colorBoton);
@@ -153,7 +127,7 @@ int main(void)
     }
 
     // Descargamos la imagen para liberar recursos
-    UnloadTexture(imagen);
+    //UnloadTexture(imagen);
 
     // Descargamos el sonido para liberar recursos
     UnloadSound(jump);
