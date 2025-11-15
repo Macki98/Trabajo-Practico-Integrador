@@ -9,8 +9,10 @@
 
 #include "Jugador.hpp"
 
-Jugador::Jugador()
+//Construimos al jugador
+Jugador::Jugador(float _deltaTime)
 {
+    frameTime = _deltaTime;
 }
 
 Jugador::~Jugador()
@@ -23,14 +25,15 @@ void Jugador::dibujarPersonaje()
     DrawTextureEx(personaje, posJugador, rotJugador, escJugador, colJugador);
 }
 
+
 // Aplicamos movimiento horizontal  (izq y der ) sobre el pesonaje utilizando flecha izquierda y derecha 
 void Jugador::caminar()
 {
     if (IsKeyDown(KEY_LEFT)) {
-        posJugador.x -= velJugador.x;
+        posJugador.x -= velJugador.x * frameTime;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        posJugador.x += velJugador.x;
+        posJugador.x += velJugador.x * frameTime;
     }
 }
 
@@ -45,4 +48,10 @@ void Jugador::saltar()
 
         posJugador.y += velJugador.y; //* deltaTime;
     }
+}
+
+// Reiniciamos la pos del jugador para su punto de partida
+void Jugador::reiniciarPos()
+{
+    posJugador = velJugador;
 }

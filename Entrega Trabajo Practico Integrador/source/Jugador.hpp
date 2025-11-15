@@ -12,11 +12,14 @@ class Jugador
 {
 private:
 	
-    bool estaVivo = true;
+    
 
     Texture2D personaje = LoadTexture("Assets/knight.png");
 
-    // Posicion inicial del personaje
+    // Posicion predeterminada del personaje
+    const Vector2 posInicial = { 150, (768 / 2) };
+
+    // Posicion del personaje
     Vector2 posJugador = { 150, (768 / 2) };
 
     // velocidad que se le asignara al personaje
@@ -31,14 +34,21 @@ private:
     // Escalado del personaje
     float escJugador = 0.15f;
 
+    float frameTime;
+
 public:
-	Jugador();
+    
+    bool estaVivo = true;
+
+	Jugador(float _deltaTime);
 	~Jugador();
 
     void caminar();
     void saltar();
     void recibirDaño();
     void dibujarPersonaje();
+    void reiniciarPos();
+  
 
 };
 

@@ -7,6 +7,8 @@
 #include <time.h>
 
 #include "Jugador.hpp" 
+#include "Game.hpp"
+
 
 
 
@@ -15,10 +17,10 @@ int main(void)
     // Ventana de 1024x768 píxeles con un título personalizado
     InitWindow(1024, 768, "¡Despierta, Mavis! - Leonel Tomas Mc Cormack");
     
-    Jugador* J1 = new Jugador();
     // Iniciamos el dispocitivo de audio
     InitAudioDevice();
 
+    Game* partida = new Game();
 
 
     // Cargamos el sonido para el salto
@@ -54,29 +56,12 @@ int main(void)
 
     // Configuracion framerate
     SetTargetFPS(60);
-
-    // Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
-    int contador = -1;
-    
+ 
     // Bucle principal del juego (se repite hasta que se cierre la ventana)
     while (!WindowShouldClose())
     {
 
-        // Se establece un tiempo real
-        float deltaTime = GetFrameTime();
-
-        // Buffer de teclado que detecta si se presiono la tecla ESC para cerrar la ventana
-        if (IsKeyPressed(KEY_ESCAPE)) {
-            CloseWindow();
-        }
-
-        J1->caminar();
-        J1->saltar();
-
-        // Buffer de teclado que reinicia la posicion del personaje al presionar la R
-        if (IsKeyPressed(KEY_R)) {
-            //personaje = { 150, (768 / 2) };
-        }
+        partida->nivel1();
 
         // Buffer de teclado que muestra y oculta mensaje del sistema
         if (IsKeyPressed(KEY_M)) {
