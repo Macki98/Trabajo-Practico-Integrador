@@ -41,17 +41,26 @@ void Jugador::caminar()
 void Jugador::saltar()
 {
     if (IsKeyPressed(KEY_SPACE)) {
-        //PlaySound(jump);
-        posJugador.y -= velJugador.y;
+        PlaySound(jump);
+        posJugador.y -= velJugador.y * frameTime;
     }
     else if (posJugador.y <= (768 / 2)) {
 
-        posJugador.y += velJugador.y; //* deltaTime;
+        posJugador.y += velJugador.y * frameTime;
     }
+}
+
+void Jugador::recibirDaño()
+{
 }
 
 // Reiniciamos la pos del jugador para su punto de partida
 void Jugador::reiniciarPos()
 {
-    posJugador = velJugador;
+    posJugador = posInicial;
+}
+
+float Jugador::obtenerPos()
+{
+    return posJugador.x,posJugador.y;
 }

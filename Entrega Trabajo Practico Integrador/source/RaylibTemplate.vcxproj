@@ -158,11 +158,11 @@ xcopy "$(SolutionDir)..\lib\vld\64-bit\Microsoft.DTfW.DHL.manifest" "$(OutDir)" 
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\ship-galaga.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Jugador.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Knight.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

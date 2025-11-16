@@ -12,9 +12,11 @@ class Jugador
 {
 private:
 	
-    
+    // Cargamos el sonido para el salto
+    Sound jump = LoadSound("Assets/jump.wav");
 
-    Texture2D personaje = LoadTexture("Assets/knight.png");
+    // Cargamos la textura del personaje
+    Texture2D personaje = LoadTexture("Assets/Knight.png");
 
     // Posicion predeterminada del personaje
     const Vector2 posInicial = { 150, (768 / 2) };
@@ -48,6 +50,7 @@ public:
     void recibirDaño();
     void dibujarPersonaje();
     void reiniciarPos();
+    float obtenerPos();
   
 
 };
