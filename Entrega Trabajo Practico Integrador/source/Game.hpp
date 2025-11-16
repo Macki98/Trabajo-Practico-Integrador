@@ -13,6 +13,10 @@ class Game
 {
 
 public:
+	const int ancho = 1024;
+	const int alto = 768;
+
+	Color fondolvl1 = WHITE;
 
 	Jugador* J1 = new Jugador(deltaTime);
 	float deltaTime = GetFrameTime();

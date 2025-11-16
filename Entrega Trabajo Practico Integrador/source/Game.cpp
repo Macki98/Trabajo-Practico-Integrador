@@ -16,9 +16,11 @@ Game::Game()
 
 void Game::nivel1()
 {
-	while (J1->estaVivo)
-	{
+	
+	InitWindow(ancho, alto, "Nivel 1 - Alcanza la zona");
+
+
 		J1->caminar();
 		J1->saltar();
-	}
+
 }
