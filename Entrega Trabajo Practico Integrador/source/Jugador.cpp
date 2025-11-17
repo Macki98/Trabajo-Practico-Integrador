@@ -38,7 +38,7 @@ void Jugador::caminar()
 }
 
 // Aplicamos salto simple
-void Jugador::saltar()
+void Jugador::saltar(float _deltaTime)
 {
     if (IsKeyPressed(KEY_SPACE)) {
         PlaySound(jump);
@@ -46,7 +46,7 @@ void Jugador::saltar()
     }
     else if (posJugador.y <= (768 / 2)) {
 
-        posJugador.y += velJugador.y;
+        posJugador.y += velJugador.y * _deltaTime;
     }
 }
 

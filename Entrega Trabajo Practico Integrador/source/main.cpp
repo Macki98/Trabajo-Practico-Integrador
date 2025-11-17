@@ -27,6 +27,7 @@ int main(void)
     InitAudioDevice();
 
     Game* partida = new Game();
+    Jugador* J1 = new Jugador();
   
 
     // Color del Boton
@@ -43,8 +44,19 @@ int main(void)
     // Bucle principal del juego (se repite hasta que se cierre la ventana)
     while (!WindowShouldClose()) 
     {
-        
-        partida->nivel1();
+        float deltaTime = GetFrameTime();
+        J1->caminar();
+        J1->saltar(deltaTime);
+        J1->obtenerPos();
+
+        BeginDrawing();
+
+        ClearBackground(WHITE);
+
+        J1->dibujarPersonaje();
+
+        EndDrawing();
+
     }
     
     // Descargamos la imagen para liberar recursos

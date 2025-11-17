@@ -18,9 +18,6 @@ public:
 
 	Vector2 posicionCursor = GetMousePosition();
 
-	
-	float deltaTime = GetFrameTime();
-
 	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
 	int contador = 1;
 
@@ -29,6 +26,7 @@ public:
 	~Game();
 
 	void mensajeSistma();
+
 
 	void nivel1();
 
