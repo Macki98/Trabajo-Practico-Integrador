@@ -10,9 +10,9 @@
 #include "Jugador.hpp"
 
 //Construimos al jugador
-Jugador::Jugador(float _deltaTime)
+Jugador::Jugador()
 {
-    frameTime = _deltaTime;
+    
 }
 
 Jugador::~Jugador()
@@ -30,10 +30,10 @@ void Jugador::dibujarPersonaje()
 void Jugador::caminar()
 {
     if (IsKeyDown(KEY_LEFT)) {
-        posJugador.x -= velJugador.x * frameTime;
+        posJugador.x -= velJugador.x;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        posJugador.x += velJugador.x * frameTime;
+        posJugador.x += velJugador.x;
     }
 }
 
@@ -42,11 +42,11 @@ void Jugador::saltar()
 {
     if (IsKeyPressed(KEY_SPACE)) {
         PlaySound(jump);
-        posJugador.y -= velJugador.y * frameTime;
+        posJugador.y -= velJugador.y;
     }
     else if (posJugador.y <= (768 / 2)) {
 
-        posJugador.y += velJugador.y * frameTime;
+        posJugador.y += velJugador.y;
     }
 }
 

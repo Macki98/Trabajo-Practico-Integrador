@@ -14,8 +14,14 @@
 
 int main(void)
 {
-    // Ventana de 1024x768 píxeles con un título personalizado
-    //InitWindow(1024, 768, "¡Despierta, Mavis! - Leonel Tomas Mc Cormack");
+    const int anchoPantalla = 1024;
+    const int altoPantalla = 768;
+
+    InitWindow(anchoPantalla, altoPantalla, "Nivel 1 - Alcanza la zona");
+
+    SetTargetFPS(60);
+
+    
     
     // Iniciamos el dispocitivo de audio
     InitAudioDevice();
@@ -32,25 +38,23 @@ int main(void)
     // Boton para cambiar de color el fondo
     Vector2 Boton = { 970, 50 };
 
-
-
-
-
-    // Configuracion framerate
-    SetTargetFPS(60);
     
-    partida->nivel1();
+  
     // Bucle principal del juego (se repite hasta que se cierre la ventana)
-    //while (!WindowShouldClose()) {}
-
+    while (!WindowShouldClose()) 
+    {
+        
+        partida->nivel1();
+    }
+    
     // Descargamos la imagen para liberar recursos
-    //UnloadTexture(imagen);
+    
 
     // Descargamos el sonido para liberar recursos
     //UnloadSound(jump);
 
     // Cerramos la ventana
-    //CloseWindow();
+    CloseWindow();
 
     return 0;
 }

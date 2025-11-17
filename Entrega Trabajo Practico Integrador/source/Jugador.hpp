@@ -36,13 +36,13 @@ private:
     // Escalado del personaje
     float escJugador = 0.15f;
 
-    float frameTime;
+    float deltaTime = GetFrameTime();
 
 public:
     
     bool estaVivo = true;
 
-	Jugador(float _deltaTime);
+	Jugador();
 	~Jugador();
 
     void caminar();

@@ -14,19 +14,15 @@ class Game
 
 public:
 
-
-	const int ancho = 1024;
-	const int alto = 768;
-
 	Color fondolvl1 = WHITE;
 
 	Vector2 posicionCursor = GetMousePosition();
 
-	Jugador* J1 = new Jugador(deltaTime);
+	
 	float deltaTime = GetFrameTime();
 
 	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
-	int contador = -1;
+	int contador = 1;
 
 
 	Game();
