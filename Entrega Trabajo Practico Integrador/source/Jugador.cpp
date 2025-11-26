@@ -57,7 +57,9 @@ void Jugador::recibirDaño()
 // Reiniciamos la pos del jugador para su punto de partida
 void Jugador::reiniciarPos()
 {
-    posJugador = posInicial;
+    if (IsKeyPressed(KEY_R)) {
+        posJugador = posInicial;
+    }
 }
 
 float Jugador::obtenerPos()

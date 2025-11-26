@@ -48,12 +48,15 @@ int main(void)
         J1->caminar();
         J1->saltar(deltaTime);
         J1->obtenerPos();
+        J1->reiniciarPos();
 
         BeginDrawing();
 
         ClearBackground(WHITE);
 
+        partida->dibujarFondo();
         J1->dibujarPersonaje();
+       
 
         EndDrawing();
 

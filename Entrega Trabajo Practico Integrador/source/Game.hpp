@@ -16,6 +16,12 @@ public:
 
 	Color fondolvl1 = WHITE;
 
+
+
+	Texture2D fondo = LoadTexture("Assets/fondo castillo.png");
+
+	float escFondo = 0.5f;
+
 	Vector2 posicionCursor = GetMousePosition();
 
 	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
@@ -27,6 +33,7 @@ public:
 
 	void mensajeSistma();
 
+	void dibujarFondo();
 
 	void nivel1();
 

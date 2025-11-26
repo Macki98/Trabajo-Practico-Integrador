@@ -36,6 +36,11 @@ void Game::mensajeSistma()
 
 }
 
+void Game::dibujarFondo() 
+{
+	DrawTextureEx(fondo, {0,0}, 0, escFondo, WHITE);
+}
+
 void Game::nivel1()
 {
 
