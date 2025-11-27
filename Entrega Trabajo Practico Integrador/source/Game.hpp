@@ -19,7 +19,7 @@ public:
 	//Parametros fondo
 	Texture2D fondo = LoadTexture("Assets/Fondo castillo.png");
 
-	Rectangle pantalla = { 0, 0, 1024, 768 };
+	Rectangle pantallaFondo = { 0, 0, 1024, 768 };
 
 	Color fondoCol = WHITE;
 

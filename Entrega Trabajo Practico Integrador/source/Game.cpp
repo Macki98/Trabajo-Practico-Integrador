@@ -40,7 +40,8 @@ void Game::mensajeSistma()
 
 void Game::dibujarFondo() 
 {
-	DrawTexturePro(fondo, pantalla, pantalla, Vector2Zero(), 0 , fondoCol);
+	DrawTexturePro(fondo, pantallaFondo, pantallaFondo, Vector2Zero(), 0, fondoCol);
+
 }
 
 void Game::nivel1()

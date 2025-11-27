@@ -162,6 +162,7 @@ xcopy "$(SolutionDir)..\lib\vld\64-bit\Microsoft.DTfW.DHL.manifest" "$(OutDir)" 
     <ClInclude Include="Jugador.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Fondo castillo.png" />
     <Image Include="Assets\Knight.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -37,9 +37,12 @@ private:
     // Escalado del personaje
     float escJugador = 0.15f;
 
-public:
     
-    bool estaVivo = true;
+
+public:
+
+    bool EstaVivo = true;
+    
 
 	Jugador();
 	~Jugador();
