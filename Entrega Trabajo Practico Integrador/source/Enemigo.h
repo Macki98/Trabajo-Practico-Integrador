@@ -21,18 +21,16 @@ private:
 
 	//Color del enemigo
 	Color colEnemigo = WHITE;
-	
-	//Cantidad de textura que se visualiza
-	Rectangle sourceEnemigo = { 0,0,(float)enemigo.width,(float)enemigo.height };
+
 
 	//Rectangulo que funciona como hitbox del enemigo
-	Rectangle hitEnemigo = { posEnemigo.x, posEnemigo.y, (float)enemigo.width/4,(float)enemigo.height/4 };
+	Rectangle hitEnemigo = { posEnemigo.x, posEnemigo.y, (float)enemigo.width / escala,(float)enemigo.height / escala};
 
 	//Origen (centro) del enemigo
 	Vector2 origenEnemigo = { (float)enemigo.width / 2, (float)enemigo.height / 2 };
 
 	//velocidad del enemigo
-	Vector2 velocidad = { 500.0f, 50.0f };
+	Vector2 velocidad = { 150.0f, 50.0f };
 
 	//escalado enemigo
 	float escala = 0.15f;
