@@ -7,6 +7,7 @@
 #include <time.h>
 
 #include "Jugador.hpp" 
+#include "Enemigo.h"
 #include "Game.hpp"
 
 #include "raymath.h"
@@ -22,12 +23,12 @@ int main(void)
 
     SetTargetFPS(60);
 
-    Game* partida = new Game();
-    Jugador* J1 = new Jugador();
-
-
     // Iniciamos el dispocitivo de audio
     InitAudioDevice();
+
+    Game* partida = new Game();
+    Jugador* J1 = new Jugador();
+    Enemigo* bola = new Enemigo();
   
 
     // Color del Boton
@@ -49,12 +50,14 @@ int main(void)
         J1->saltar(deltaTime);
         J1->obtenerPos();
         J1->reiniciarPos();
+        bola->patrullaje(deltaTime);
 
         BeginDrawing();
 
         ClearBackground(WHITE);
 
         partida->dibujarFondo();
+        bola->dibujarEnemigo();
         J1->dibujarPersonaje();
        
 
