@@ -5,6 +5,7 @@
 #endif
 
 #include "raylib.h"
+#include "raymath.h"
 #include <cstdlib>
 #include <time.h>
 #include "Jugador.hpp"
@@ -14,14 +15,15 @@ class Game
 
 public:
 
-	Color fondolvl1 = WHITE;
 
+	//Parametros fondo
+	Texture2D fondo = LoadTexture("Assets/Fondo castillo.png");
 
+	Rectangle pantalla = { 0, 0, 1024, 768 };
 
-	Texture2D fondo = LoadTexture("Assets/fondo castillo.png");
+	Color fondoCol = WHITE;
 
-	float escFondo = 0.5f;
-
+	//funciones del mouse
 	Vector2 posicionCursor = GetMousePosition();
 
 	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema

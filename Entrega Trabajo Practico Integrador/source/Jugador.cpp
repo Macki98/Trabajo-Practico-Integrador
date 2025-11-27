@@ -4,6 +4,7 @@
 #endif
 
 #include "raylib.h"
+#include "raymath.h"
 #include <cstdlib>
 #include <time.h>
 

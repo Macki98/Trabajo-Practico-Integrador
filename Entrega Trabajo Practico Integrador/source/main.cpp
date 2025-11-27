@@ -9,25 +9,25 @@
 #include "Jugador.hpp" 
 #include "Game.hpp"
 
-
+#include "raymath.h"
 
 
 int main(void)
 {
-    const int anchoPantalla = 1024;
-    const int altoPantalla = 768;
 
-    InitWindow(anchoPantalla, altoPantalla, "Nivel 1 - Alcanza la zona");
+
+    Rectangle pantalla = { 0,0,1024, 768 };
+
+    InitWindow(pantalla.width, pantalla.height, "Nivel 1 - Alcanza la zona");
 
     SetTargetFPS(60);
 
-    
-    
-    // Iniciamos el dispocitivo de audio
-    InitAudioDevice();
-
     Game* partida = new Game();
     Jugador* J1 = new Jugador();
+
+
+    // Iniciamos el dispocitivo de audio
+    InitAudioDevice();
   
 
     // Color del Boton

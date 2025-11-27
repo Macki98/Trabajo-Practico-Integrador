@@ -4,6 +4,7 @@
 #endif
 
 #include "raylib.h"
+#include "raymath.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -12,6 +13,7 @@
 
 Game::Game()
 {
+
 
 }
 
@@ -38,7 +40,7 @@ void Game::mensajeSistma()
 
 void Game::dibujarFondo() 
 {
-	DrawTextureEx(fondo, {0,0}, 0, escFondo, WHITE);
+	DrawTexturePro(fondo, pantalla, pantalla, Vector2Zero(), 0 , fondoCol);
 }
 
 void Game::nivel1()

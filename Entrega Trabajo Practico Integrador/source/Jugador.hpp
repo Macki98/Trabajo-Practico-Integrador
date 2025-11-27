@@ -5,6 +5,7 @@
 #endif
 
 #include "raylib.h"
+#include "raymath.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -12,10 +13,10 @@ class Jugador
 {
 private:
 	
-    // Cargamos el sonido para el salto
+    //sonido para el salto
     Sound jump = LoadSound("Assets/jump.wav");
 
-    // Cargamos la textura del personaje
+    // textura del personaje
     Texture2D personaje = LoadTexture("Assets/Knight.png");
 
     // Posicion predeterminada del personaje
