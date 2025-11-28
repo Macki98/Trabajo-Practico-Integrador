@@ -9,19 +9,23 @@
 #include <time.h>
 #include "Enemigo.h"
 
-Enemigo::Enemigo()
+Enemigo::Enemigo(float _x, float _y)
 {
+	posEnemigo.x = _x;
+	posEnemigo.y = _y;
+
 }
 
 Enemigo::~Enemigo()
 {
+	UnloadTexture(enemigo);
 }
 
 void Enemigo::patrullaje(float _deltaTime)
 {
 
 	posEnemigo.x += velocidad.x * _deltaTime;
-	//formula para detectar colisiones con entorno
+	//formula milagrosa para detectar colisiones con entorno
 	if (posEnemigo.x + ((float)enemigo.width * escala) >= 1024) {
 		posEnemigo.x = 1024 - ((float)enemigo.width*escala);
 		velocidad.x *= -1;

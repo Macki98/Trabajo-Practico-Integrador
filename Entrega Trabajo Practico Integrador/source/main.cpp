@@ -8,6 +8,9 @@
 
 #include "Jugador.hpp" 
 #include "Enemigo.h"
+
+#include "Plataforma.h"
+
 #include "Game.hpp"
 
 #include "raymath.h"
@@ -28,7 +31,9 @@ int main(void)
 
     Game* partida = new Game();
     Jugador* J1 = new Jugador();
-    Enemigo* bola = new Enemigo();
+    Enemigo* bola = new Enemigo(pantalla.width/2, pantalla.height/2);
+    Plataforma* plataforma = new Plataforma();
+
   
 
     // Color del Boton
@@ -57,6 +62,7 @@ int main(void)
         ClearBackground(WHITE);
 
         partida->dibujarFondo();
+        plataforma->dibujarPlataforma();
         bola->dibujarEnemigo();
         J1->dibujarPersonaje();
        

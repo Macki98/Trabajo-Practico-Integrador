@@ -17,7 +17,7 @@ private:
 	Texture2D enemigo = LoadTexture("Assets/Obstaculo 1.png");
 
 	//posicion del enemigo
-	Vector2 posEnemigo = {1024 / 2, 768 / 2 };
+	Vector2 posEnemigo;
 
 	//Color del enemigo
 	Color colEnemigo = WHITE;
@@ -38,7 +38,7 @@ private:
 
 public:
 
-	Enemigo();
+	Enemigo(float _x, float _y);
 	~Enemigo();
 
 	void dibujarEnemigo();

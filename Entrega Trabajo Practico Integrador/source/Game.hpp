@@ -9,6 +9,10 @@
 #include <cstdlib>
 #include <time.h>
 #include "Jugador.hpp"
+#include "Enemigo.h"
+#include "Plataforma.h"
+
+
 
 class Game
 {

@@ -41,9 +41,9 @@ private:
 
 public:
 
-    bool EstaVivo = true;
     
-
+    bool estaVivo;
+    //pendiente para agregar al constructor e inicializar las variables cuando se llama a Game();
 	Jugador();
 	~Jugador();
 

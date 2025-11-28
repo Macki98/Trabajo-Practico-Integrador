@@ -157,11 +157,13 @@ xcopy "$(SolutionDir)..\lib\vld\64-bit\Microsoft.DTfW.DHL.manifest" "$(OutDir)" 
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Jugador.hpp" />
+    <ClInclude Include="Plataforma.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Fondo castillo.png" />
