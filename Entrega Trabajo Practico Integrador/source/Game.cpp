@@ -11,6 +11,8 @@
 #include "Jugador.hpp"
 #include "Game.hpp"
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
 Game::Game()
 {
 

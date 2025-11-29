@@ -9,6 +9,9 @@
 #include <time.h>
 #include "Enemigo.h"
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
+
 Enemigo::Enemigo(float _x, float _y)
 {
 	posEnemigo.x = _x;
@@ -32,6 +35,16 @@ void Enemigo::patrullaje(float _deltaTime)
 	}
 	
 
+}
+
+Rectangle Enemigo::GetRecE()
+{
+	return Rectangle{posEnemigo.x, posEnemigo.y, enemigo.width*escala, enemigo.height*escala};
+}
+
+void Enemigo::dibujarHitboxE()
+{
+	DrawRectangleLinesEx(GetRecE(), 5, RED);
 }
 
 void Enemigo::dibujarEnemigo()

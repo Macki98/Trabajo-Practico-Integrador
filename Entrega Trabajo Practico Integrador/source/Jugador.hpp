@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include <time.h>
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
+
 class Jugador
 {
 private:
@@ -19,11 +22,11 @@ private:
     // textura del personaje
     Texture2D personaje = LoadTexture("Assets/Knight.png");
 
+    // Posicion del personaje
+    Vector2 posJugador;
+
     // Posicion predeterminada del personaje
     const Vector2 posInicial = { 150, (768 / 2) };
-
-    // Posicion del personaje
-    Vector2 posJugador = { 150, (768 / 2) };
 
     // velocidad que se le asignara al personaje
     Vector2 velJugador = { 5.0f, 100.0f };
@@ -37,22 +40,31 @@ private:
     // Escalado del personaje
     float escJugador = 0.15f;
 
+
+    //Hitbox del personaje
+    Rectangle hitBoxJ = {posJugador.x,posJugador.y, (float)personaje.width * escJugador, (float)personaje.height * escJugador };
     
 
 public:
 
     
-    bool estaVivo;
     //pendiente para agregar al constructor e inicializar las variables cuando se llama a Game();
-	Jugador();
+	Jugador(float _x, float _y);
 	~Jugador();
+
+
+   
+    void dibujarHitBoxJ();
+    void dibujarPersonaje();
+    Rectangle GetRecJ();
 
     void caminar();
     void saltar(float _deltaTime);
     void recibirDaño();
-    void dibujarPersonaje();
+   
     void reiniciarPos();
     float obtenerPos();
+
   
 
 };

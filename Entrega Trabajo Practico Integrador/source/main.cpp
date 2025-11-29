@@ -15,14 +15,14 @@
 
 #include "raymath.h"
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
 
 int main(void)
 {
 
 
-    Rectangle pantalla = { 0,0,1024, 768 };
-
-    InitWindow(pantalla.width, pantalla.height, "Nivel 1 - Alcanza la zona");
+    InitWindow(SCREEN_WIDTH,SCREEN_HEIGHT, "Nivel 1 - Alcanza la zona");
 
     SetTargetFPS(60);
 
@@ -30,9 +30,9 @@ int main(void)
     InitAudioDevice();
 
     Game* partida = new Game();
-    Jugador* J1 = new Jugador();
-    Enemigo* bola = new Enemigo(pantalla.width/2, pantalla.height/2);
-    Plataforma* plataforma = new Plataforma();
+    Jugador* J1 = new Jugador(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    Enemigo* bola = new Enemigo(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    Plataforma* plataforma = new Plataforma(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
 
   
 
@@ -62,9 +62,16 @@ int main(void)
         ClearBackground(WHITE);
 
         partida->dibujarFondo();
+
         plataforma->dibujarPlataforma();
+        plataforma->dibujarHitboxP();
+
         bola->dibujarEnemigo();
+        bola->dibujarHitboxE();
+
+
         J1->dibujarPersonaje();
+        J1->dibujarHitBoxJ();
        
 
         EndDrawing();

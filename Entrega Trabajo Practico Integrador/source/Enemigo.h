@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include <time.h>
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
+
 class Enemigo
 {
 private:
@@ -22,13 +25,6 @@ private:
 	//Color del enemigo
 	Color colEnemigo = WHITE;
 
-
-	//Rectangulo que funciona como hitbox del enemigo
-	Rectangle hitEnemigo = { posEnemigo.x, posEnemigo.y, (float)enemigo.width / escala,(float)enemigo.height / escala};
-
-	//Origen (centro) del enemigo
-	Vector2 origenEnemigo = { (float)enemigo.width / 2, (float)enemigo.height / 2 };
-
 	//velocidad del enemigo
 	Vector2 velocidad = { 150.0f, 50.0f };
 
@@ -36,11 +32,17 @@ private:
 	float escala = 0.15f;
 
 
+	//Rectangulo que funciona como hitbox del enemigo
+	Rectangle hitEnemigo = { posEnemigo.x,posEnemigo.y, (float)enemigo.width*escala,(float)enemigo.height*escala };
+
+
 public:
 
 	Enemigo(float _x, float _y);
 	~Enemigo();
 
+	Rectangle GetRecE();
+	void dibujarHitboxE();
 	void dibujarEnemigo();
 
 	void patrullaje(float _deltaTime);

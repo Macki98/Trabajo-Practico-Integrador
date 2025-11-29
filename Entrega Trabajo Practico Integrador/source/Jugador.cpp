@@ -10,14 +10,30 @@
 
 #include "Jugador.hpp"
 
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 768
+
 //Construimos al jugador
-Jugador::Jugador()
+Jugador::Jugador(float _x, float _y)
 {
-    
+
+    posJugador.x = _x;
+    posJugador.y = _y;
+
 }
 
 Jugador::~Jugador()
 {
+}
+
+Rectangle Jugador::GetRecJ()
+{
+    return Rectangle{posJugador.x, posJugador.y,(float)personaje.width*escJugador, (float)personaje.height*escJugador};
+}
+
+void Jugador::dibujarHitBoxJ()
+{
+    DrawRectangleLinesEx(GetRecJ(), 5, RED);
 }
 
 // Funcion que nos dibuja el personaje en pantalla
