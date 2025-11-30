@@ -28,13 +28,30 @@ Jugador::~Jugador()
 
 Rectangle Jugador::GetRecJ()
 {
-    return Rectangle{posJugador.x, posJugador.y,(float)personaje.width*escJugador, (float)personaje.height*escJugador};
+    return Rectangle{ posJugador.x, posJugador.y,(float)personaje.width * escJugador, (float)personaje.height * escJugador };
 }
 
-void Jugador::dibujarHitBoxJ(bool colisiona)
+//Detectar colisiones con plataforma
+void Jugador::dibujarHitBoxJ(bool colisiona, float _deltaTime)
 {
     Color colorLinea = colisiona ? RED : GREEN;
     DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
+    if (colisiona) {
+
+        velJugador.y = 0;
+        posJugador.y += velJugador.y * _deltaTime;
+    }
+    else
+    {
+        velJugador.y += gravedad * _deltaTime;
+        posJugador.y += velJugador.y * _deltaTime;
+    }
+    
+    //Condional para que el jugador no se salga de la pantalla.
+    if (posJugador.y + ((float)personaje.height * escJugador) >= SCREEN_HEIGHT) {
+        posJugador.y = SCREEN_HEIGHT - ((float)personaje.height * escJugador);
+    }
+
 }
 
 // Funcion que nos dibuja el personaje en pantalla
@@ -49,9 +66,17 @@ void Jugador::caminar(float _deltaTime)
 {
     if (IsKeyDown(KEY_LEFT)) {
         posJugador.x -= velJugador.x * _deltaTime;
+        if (posJugador.x <= 0){
+            posJugador.x = 0;
+        }
     }
+
     if (IsKeyDown(KEY_RIGHT)) {
         posJugador.x += velJugador.x * _deltaTime;
+        if (posJugador.x + ((float)personaje.width*escJugador) >= SCREEN_WIDTH)
+        {
+            posJugador.x = SCREEN_WIDTH - ((float)personaje.width * escJugador);
+        }
     }
 }
 
@@ -61,19 +86,9 @@ void Jugador::saltar(float _deltaTime)
     if (IsKeyPressed(KEY_SPACE) && velJugador.y == 0) {
         PlaySound(jump);
         velJugador.y = jumpForce;
-    }
-    else
-    {
-        velJugador.y += gravedad * _deltaTime;
+        posJugador.y += velJugador.y * _deltaTime;
     }
 
-    posJugador.y += velJugador.y * _deltaTime;
-
-
-    //Condional para que el jugador no se salga de la pantalla.
-    if (posJugador.y + ((float)personaje.height * escJugador) >= SCREEN_HEIGHT) {
-        posJugador.y = SCREEN_HEIGHT - ((float)personaje.height * escJugador);
-    }
 }
 
 

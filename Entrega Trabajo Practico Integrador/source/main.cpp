@@ -62,7 +62,6 @@ int main(void)
 
         //check colisions. Aplicar dentro del gameloop y los condicionales
         bool colisiona = CheckCollisionRecs(J1->GetRecJ(), plataforma->GetRect());
-
     
         bola->patrullaje(deltaTime);
 
@@ -82,7 +81,7 @@ int main(void)
 
 
         J1->dibujarPersonaje();
-        J1->dibujarHitBoxJ(colisiona);
+        J1->dibujarHitBoxJ(colisiona, deltaTime);
        
 
         EndDrawing();

@@ -35,7 +35,7 @@ private:
     float gravedad = 300;
 
     //Jump force
-    float jumpForce = -400.0f;
+    float jumpForce = -350.0f;
 
     // Color del personaje
     Color colJugador = WHITE;
@@ -60,9 +60,11 @@ public:
 
 
    
-    void dibujarHitBoxJ(bool colisiona);
+    void dibujarHitBoxJ(bool colisiona, float _deltaTime);
     void dibujarPersonaje();
     Rectangle GetRecJ();
+    float GetVelocidad();
+    float SetVelocidad();
 
 
     void caminar(float _deltaTime);
