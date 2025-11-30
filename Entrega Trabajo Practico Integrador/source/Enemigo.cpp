@@ -29,8 +29,8 @@ void Enemigo::patrullaje(float _deltaTime)
 
 	posEnemigo.x += velocidad.x * _deltaTime;
 	//formula milagrosa para detectar colisiones con entorno
-	if (posEnemigo.x + ((float)enemigo.width * escala) >= 1024) {
-		posEnemigo.x = 1024 - ((float)enemigo.width*escala);
+	if (posEnemigo.x + ((float)enemigo.width * escala) >= SCREEN_WIDTH) {
+		posEnemigo.x = SCREEN_WIDTH - ((float)enemigo.width*escala);
 		velocidad.x *= -1;
 	}
 	

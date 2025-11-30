@@ -32,7 +32,8 @@ int main(void)
     Game* partida = new Game();
     Jugador* J1 = new Jugador(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
     Enemigo* bola = new Enemigo(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
-    Plataforma* plataforma = new Plataforma(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    Plataforma* plataforma = new Plataforma(SCREEN_WIDTH/2,650);
+
 
   
 
@@ -51,11 +52,21 @@ int main(void)
     while (!WindowShouldClose()) 
     {
         float deltaTime = GetFrameTime();
-        J1->caminar();
+
+
+        J1->caminar(deltaTime);
         J1->saltar(deltaTime);
         J1->obtenerPos();
         J1->reiniciarPos();
+
+
+        //check colisions. Aplicar dentro del gameloop y los condicionales
+        bool colisiona = CheckCollisionRecs(J1->GetRecJ(), plataforma->GetRect());
+
+    
         bola->patrullaje(deltaTime);
+
+
 
         BeginDrawing();
 
@@ -71,7 +82,7 @@ int main(void)
 
 
         J1->dibujarPersonaje();
-        J1->dibujarHitBoxJ();
+        J1->dibujarHitBoxJ(colisiona);
        
 
         EndDrawing();

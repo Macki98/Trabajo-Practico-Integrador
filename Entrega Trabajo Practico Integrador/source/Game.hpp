@@ -42,7 +42,10 @@ public:
 
 	void dibujarFondo();
 
+
 	void nivel1();
+
+	
 
 };
 

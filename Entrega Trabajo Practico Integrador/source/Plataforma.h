@@ -20,26 +20,13 @@ private:
 
 	Texture2D plataforma = LoadTexture("Assets/plataforma.png");
 
-	Vector2 posPlataforma = {SCREEN_WIDTH/2,SCREEN_HEIGHT/2};
+	Vector2 posPlataforma;
 
 	Color colPlataforma = WHITE;
 
 	float escPlataforma = 0.10f;
 
 	 
-	//Total de la imagen a dibujar
-	Rectangle sourcePlataforma = { 0,0, (float)plataforma.width, (float)plataforma.height};
-
-
-	//Ubicacion y escalado de la imagen de la plafaorma
-	Rectangle destPlataforma = { posPlataforma.x, posPlataforma.y, 100, 50 };
-	
-	//Centro de la plataforma
-	Vector2 centroPlataforma = { (float)destPlataforma.width / 2, (float)destPlataforma.height / 2 };
-
-
-	//Hitbox plataforma
-	Rectangle hitPlataforma = { (destPlataforma.x - (destPlataforma.width/2)), (destPlataforma.y - (destPlataforma.height/2)),destPlataforma.width,destPlataforma.height};
 
 
 public:

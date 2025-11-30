@@ -9,6 +9,10 @@
 #include <time.h>
 
 #include "Jugador.hpp"
+
+#include "Enemigo.h"
+#include "Plataforma.h"
+
 #include "Game.hpp"
 
 #define SCREEN_WIDTH 1024
@@ -55,3 +59,4 @@ void Game::nivel1()
 	//}
 
 }
+

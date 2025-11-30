@@ -31,9 +31,10 @@ Rectangle Jugador::GetRecJ()
     return Rectangle{posJugador.x, posJugador.y,(float)personaje.width*escJugador, (float)personaje.height*escJugador};
 }
 
-void Jugador::dibujarHitBoxJ()
+void Jugador::dibujarHitBoxJ(bool colisiona)
 {
-    DrawRectangleLinesEx(GetRecJ(), 5, RED);
+    Color colorLinea = colisiona ? RED : GREEN;
+    DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
 }
 
 // Funcion que nos dibuja el personaje en pantalla
@@ -44,28 +45,38 @@ void Jugador::dibujarPersonaje()
 
 
 // Aplicamos movimiento horizontal  (izq y der ) sobre el pesonaje utilizando flecha izquierda y derecha 
-void Jugador::caminar()
+void Jugador::caminar(float _deltaTime)
 {
     if (IsKeyDown(KEY_LEFT)) {
-        posJugador.x -= velJugador.x;
+        posJugador.x -= velJugador.x * _deltaTime;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        posJugador.x += velJugador.x;
+        posJugador.x += velJugador.x * _deltaTime;
     }
 }
 
-// Aplicamos salto simple
+// Aplicamos salto 
 void Jugador::saltar(float _deltaTime)
 {
-    if (IsKeyPressed(KEY_SPACE)) {
+    if (IsKeyPressed(KEY_SPACE) && velJugador.y == 0) {
         PlaySound(jump);
-        posJugador.y -= velJugador.y;
+        velJugador.y = jumpForce;
     }
-    else if (posJugador.y <= (768 / 2)) {
+    else
+    {
+        velJugador.y += gravedad * _deltaTime;
+    }
 
-        posJugador.y += velJugador.y * _deltaTime;
+    posJugador.y += velJugador.y * _deltaTime;
+
+
+    //Condional para que el jugador no se salga de la pantalla.
+    if (posJugador.y + ((float)personaje.height * escJugador) >= SCREEN_HEIGHT) {
+        posJugador.y = SCREEN_HEIGHT - ((float)personaje.height * escJugador);
     }
 }
+
+
 
 void Jugador::recibirDaño()
 {

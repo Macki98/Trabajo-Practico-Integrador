@@ -29,7 +29,13 @@ private:
     const Vector2 posInicial = { 150, (768 / 2) };
 
     // velocidad que se le asignara al personaje
-    Vector2 velJugador = { 5.0f, 100.0f };
+    Vector2 velJugador = {250.0f,0.0f };
+
+    //Gravedad
+    float gravedad = 300;
+
+    //Jump force
+    float jumpForce = -400.0f;
 
     // Color del personaje
     Color colJugador = WHITE;
@@ -38,7 +44,7 @@ private:
     float rotJugador = 0.0f;
 
     // Escalado del personaje
-    float escJugador = 0.15f;
+    float escJugador = 0.07f;
 
 
     //Hitbox del personaje
@@ -54,14 +60,19 @@ public:
 
 
    
-    void dibujarHitBoxJ();
+    void dibujarHitBoxJ(bool colisiona);
     void dibujarPersonaje();
     Rectangle GetRecJ();
 
-    void caminar();
+
+    void caminar(float _deltaTime);
     void saltar(float _deltaTime);
+
+
+
     void recibirDaño();
    
+
     void reiniciarPos();
     float obtenerPos();
 

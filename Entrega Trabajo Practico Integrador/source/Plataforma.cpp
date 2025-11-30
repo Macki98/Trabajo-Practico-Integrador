@@ -25,7 +25,7 @@ Plataforma::~Plataforma()
 
 Rectangle Plataforma::GetRect()
 {
-	return Rectangle{hitPlataforma.x, hitPlataforma.y, hitPlataforma.width, hitPlataforma.height};
+	return Rectangle{posPlataforma.x,posPlataforma.y, (float)plataforma.width*escPlataforma, (float)plataforma.height*escPlataforma};
 }
 
 void Plataforma::dibujarHitboxP()
@@ -35,5 +35,5 @@ void Plataforma::dibujarHitboxP()
 
 void Plataforma::dibujarPlataforma()
 {
-	DrawTexturePro(plataforma,sourcePlataforma,destPlataforma,centroPlataforma,0,WHITE);
+	DrawTextureEx(plataforma,posPlataforma,0,escPlataforma,colPlataforma);
 }
