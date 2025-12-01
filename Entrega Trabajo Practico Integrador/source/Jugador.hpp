@@ -26,13 +26,13 @@ private:
     Vector2 posJugador;
 
     // Posicion predeterminada del personaje
-    const Vector2 posInicial = { 150, (768 / 2) };
+    const Vector2 posInicial = { 30, 600 };
 
     // velocidad que se le asignara al personaje
     Vector2 velJugador = {250.0f,0.0f };
 
     //Gravedad
-    float gravedad = 300;
+    float gravedad = 300.0f;
 
     //Jump force
     float jumpForce = -350.0f;
@@ -50,6 +50,7 @@ private:
     //Hitbox del personaje
     Rectangle hitBoxJ = {posJugador.x,posJugador.y, (float)personaje.width * escJugador, (float)personaje.height * escJugador };
     
+   
 
 public:
 
@@ -60,23 +61,27 @@ public:
 
 
    
-    void dibujarHitBoxJ(bool colisiona, float _deltaTime);
+    void checkColisionesPlat(bool _colisiona);
+    void checkColisionesEne(bool _colisiona);
+
+    
     void dibujarPersonaje();
     Rectangle GetRecJ();
+
     float GetVelocidad();
-    float SetVelocidad();
 
 
     void caminar(float _deltaTime);
     void saltar(float _deltaTime);
+  
+    float obtenerPosY();
 
 
-
-    void recibirDaño();
+    
    
 
     void reiniciarPos();
-    float obtenerPos();
+    void dibujarPos();
 
   
 

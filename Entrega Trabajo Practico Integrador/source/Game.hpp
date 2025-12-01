@@ -20,6 +20,21 @@ class Game
 
 public:
 
+	Jugador* J1 = new Jugador(30, 600);
+
+	Enemigo* bola = new Enemigo[4]{ Enemigo(130, 500),
+								   Enemigo(SCREEN_WIDTH / 3, 250),
+								   Enemigo((SCREEN_WIDTH / 3) * 2, 300),
+								   Enemigo(850,90)
+	};
+
+	Plataforma* plataforma = new Plataforma[6]{ Plataforma(20,700),
+											  Plataforma(200,550),
+											  Plataforma(100,350),
+											  Plataforma(420,230),
+											  Plataforma(640,500),
+											  Plataforma(910,315)
+	};
 
 	//Parametros fondo
 	Texture2D fondo = LoadTexture("Assets/Fondo castillo.png");
@@ -32,18 +47,25 @@ public:
 	Vector2 posicionCursor = GetMousePosition();
 
 	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
-	int contador = 1;
+	//int contador = 1;
 
+	bool gameOver = false;
+	
 
 	Game();
 	~Game();
 
-	void mensajeSistma();
 
 	void dibujarFondo();
 
+	void iniciarJuego();
 
-	void nivel1();
+	void actualizarJuego(float _deltaTime);
+
+	void dibujarJuego();
+
+	void dibujarGameOver();
+
 
 	
 

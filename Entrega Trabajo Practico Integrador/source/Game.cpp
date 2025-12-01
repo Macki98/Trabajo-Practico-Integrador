@@ -25,9 +25,11 @@ Game::Game()
 
 Game::~Game()
 {
+	UnloadTexture(fondo);
+
 }
 
-void Game::mensajeSistma()
+/*void Game::mensajeSistma()
 {
 	
 	// Buffer de teclado que muestra y oculta mensaje del sistema
@@ -43,6 +45,7 @@ void Game::mensajeSistma()
 	}
 
 }
+*/
 
 void Game::dibujarFondo() 
 {
@@ -50,13 +53,68 @@ void Game::dibujarFondo()
 
 }
 
-void Game::nivel1()
+void Game::iniciarJuego()
 {
 
-		//Todas las funciones por fuera del dibujo(Eventos, condicionales, etc)
-		mensajeSistma();
+	gameOver = false;
 
-	//}
+}
 
+void Game::actualizarJuego(float _deltaTime)
+{
+	J1->caminar(_deltaTime);
+	J1->saltar(_deltaTime);
+	J1->reiniciarPos();
+
+	bola[0].patrullaje1(_deltaTime);
+	bola[1].patrullaje2(_deltaTime);
+	bola[2].patrullaje3(_deltaTime);
+	bola[3].patrullaje4(_deltaTime);
+
+	for (int i = 0; i < 6; i++)
+	{
+		bool colisiona = CheckCollisionRecs(J1->GetRecJ(), plataforma[i].GetRect()) && J1->GetVelocidad() > 0;
+		J1->checkColisionesPlat(colisiona);
+	}
+
+	for (int i = 0; i < 4; i++) {
+		if (J1->obtenerPosY() > SCREEN_HEIGHT || CheckCollisionRecs(J1->GetRecJ(), bola[i].GetRecE()))
+		{
+			gameOver = true;
+		}
+	}
+}
+
+void Game::dibujarJuego()
+{
+	dibujarFondo();
+	J1->dibujarPos();
+
+	for (int i = 0; i < 6; i++)
+	{
+		plataforma[i].dibujarHitboxP();
+		plataforma[i].dibujarPlataforma();
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		bola[i].dibujarEnemigo();
+		bola[i].dibujarHitboxE();
+	}
+
+	J1->dibujarPersonaje();
+
+}
+
+void Game::dibujarGameOver()
+{
+	DrawText("Perdiste", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 25, RED);
+	DrawText("Presiona R para volver a intentar", SCREEN_WIDTH / 2, (SCREEN_HEIGHT/2) + 25, 25,RED);
+	
+	if (IsKeyPressed(KEY_R))
+	{
+		iniciarJuego();
+		J1->reiniciarPos();
+	}
 }
 

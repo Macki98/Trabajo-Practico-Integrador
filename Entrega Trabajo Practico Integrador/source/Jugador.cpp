@@ -24,6 +24,8 @@ Jugador::Jugador(float _x, float _y)
 
 Jugador::~Jugador()
 {
+    UnloadTexture(personaje);
+    UnloadSound(jump);
 }
 
 Rectangle Jugador::GetRecJ()
@@ -31,28 +33,36 @@ Rectangle Jugador::GetRecJ()
     return Rectangle{ posJugador.x, posJugador.y,(float)personaje.width * escJugador, (float)personaje.height * escJugador };
 }
 
-//Detectar colisiones con plataforma
-void Jugador::dibujarHitBoxJ(bool colisiona, float _deltaTime)
+float Jugador::GetVelocidad()
 {
-    Color colorLinea = colisiona ? RED : GREEN;
-    DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
-    if (colisiona) {
-
-        velJugador.y = 0;
-        posJugador.y += velJugador.y * _deltaTime;
-    }
-    else
-    {
-        velJugador.y += gravedad * _deltaTime;
-        posJugador.y += velJugador.y * _deltaTime;
-    }
-    
-    //Condional para que el jugador no se salga de la pantalla.
-    if (posJugador.y + ((float)personaje.height * escJugador) >= SCREEN_HEIGHT) {
-        posJugador.y = SCREEN_HEIGHT - ((float)personaje.height * escJugador);
-    }
-
+    return velJugador.y;
 }
+
+
+
+//Detectar colisiones con plataforma
+void Jugador::checkColisionesPlat(bool _colisiona)
+{
+    
+    //Color colorLinea = _colisiona ? RED : GREEN;
+    //DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
+    
+    if (_colisiona) {
+         
+        velJugador.y = 0;
+    }
+   
+}
+
+void Jugador::checkColisionesEne(bool _colisiona)
+{
+    Color colorLinea = _colisiona ? RED : GREEN;
+    DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
+
+      
+}
+
+
 
 // Funcion que nos dibuja el personaje en pantalla
 void Jugador::dibujarPersonaje()
@@ -83,19 +93,29 @@ void Jugador::caminar(float _deltaTime)
 // Aplicamos salto 
 void Jugador::saltar(float _deltaTime)
 {
-    if (IsKeyPressed(KEY_SPACE) && velJugador.y == 0) {
+    posJugador.y += velJugador.y * _deltaTime;
+
+    if (IsKeyPressed(KEY_SPACE) && velJugador.y == 0){
         PlaySound(jump);
         velJugador.y = jumpForce;
         posJugador.y += velJugador.y * _deltaTime;
     }
+    
+    velJugador.y += gravedad * _deltaTime;
 
+    if (posJugador.y <= 0)
+    {
+        posJugador.y = 0;
+
+    }
+    
 }
 
-
-
-void Jugador::recibirDaño()
+float Jugador::obtenerPosY()
 {
+    return posJugador.y + ((float)personaje.height*escJugador);
 }
+
 
 // Reiniciamos la pos del jugador para su punto de partida
 void Jugador::reiniciarPos()
@@ -105,7 +125,7 @@ void Jugador::reiniciarPos()
     }
 }
 
-float Jugador::obtenerPos()
+void Jugador::dibujarPos()
 {
-    return posJugador.x,posJugador.y;
+    DrawText(TextFormat("Posicion del jugador: X: %.2f Y: %.2f", posJugador.x, posJugador.y), 2, 50, 25, BLACK);
 }

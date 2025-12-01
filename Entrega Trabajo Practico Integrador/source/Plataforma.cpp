@@ -21,6 +21,7 @@ Plataforma::Plataforma(float _x, float _y)
 
 Plataforma::~Plataforma()
 {
+	UnloadTexture(plataforma);
 }
 
 Rectangle Plataforma::GetRect()

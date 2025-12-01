@@ -26,7 +26,7 @@ private:
 	Color colEnemigo = WHITE;
 
 	//velocidad del enemigo
-	Vector2 velocidad = { 150.0f, 50.0f };
+	Vector2 velocidad = { 150.0f, 150.0f };
 
 	//escalado enemigo
 	float escala = 0.15f;
@@ -45,8 +45,12 @@ public:
 	void dibujarHitboxE();
 	void dibujarEnemigo();
 
-	void patrullaje(float _deltaTime);
+	void checkLimites(float _deltaTime);
 
+	void patrullaje1(float _deltaTime);
+	void patrullaje2(float _deltaTime);
+	void patrullaje3(float _deltaTime);
+	void patrullaje4(float _deltaTime);
 
 
 
