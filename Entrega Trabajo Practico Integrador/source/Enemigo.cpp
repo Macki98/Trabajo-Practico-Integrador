@@ -24,39 +24,6 @@ Enemigo::~Enemigo()
 	UnloadTexture(enemigo);
 }
 
-void Enemigo::checkLimites(float _deltaTime)
-{
-
-	//posEnemigo.x += velocidad.x * _deltaTime;
-	//formula milagrosa para detectar colisiones con entorno
-	if (posEnemigo.x + ((float)enemigo.width * escala) >= SCREEN_WIDTH) 
-	{
-		posEnemigo.x = SCREEN_WIDTH - ((float)enemigo.width*escala);
-		velocidad.x *= -1;
-	}
-
-	if (posEnemigo.x <= 0)
-	{
-		posEnemigo.x = 0;
-		velocidad.x *= -1;
-	}
-	
-	//posEnemigo.y += velocidad.y * _deltaTime;
-
-	if (posEnemigo.y + ((float)enemigo.height *escala) >= SCREEN_HEIGHT)
-	{
-		posEnemigo.y = SCREEN_HEIGHT - ((float)enemigo.height * escala);
-		velocidad.y *= -1;
-	}
-
-	if (posEnemigo.y <= 0)
-	{
-		posEnemigo.y =0;
-		velocidad.y *= -1;
-	}
-
-}
-
 void Enemigo::patrullaje1(float _deltaTime)
 {
 	posEnemigo.y += velocidad.y * _deltaTime;
@@ -122,13 +89,13 @@ void Enemigo::patrullaje4(float _deltaTime)
 
 }
 
-
-
+//funcion que devuelve el rectangulo que envuelve al enemigo y funciona como hitbox
 Rectangle Enemigo::GetRecE()
 {
 	return Rectangle{posEnemigo.x, posEnemigo.y, enemigo.width*escala, enemigo.height*escala};
 }
 
+//funcion que permite ver la hitbox enemiga
 void Enemigo::dibujarHitboxE()
 {
 	DrawRectangleLinesEx(GetRecE(), 5, RED);
@@ -137,6 +104,7 @@ void Enemigo::dibujarHitboxE()
 void Enemigo::dibujarEnemigo()
 {
 	DrawTextureEx(enemigo, posEnemigo, 0, escala, colEnemigo);
+	SetTextureFilter(enemigo, TEXTURE_FILTER_BILINEAR);
 }
 
 

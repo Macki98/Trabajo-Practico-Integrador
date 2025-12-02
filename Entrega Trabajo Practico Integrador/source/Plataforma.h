@@ -38,7 +38,7 @@ public:
 	Rectangle GetRect();
 	void dibujarHitboxP();
 	void dibujarPlataforma();
-
+	
 
 };
 

@@ -36,27 +36,59 @@ public:
 											  Plataforma(910,315)
 	};
 
+
 	//Parametros fondo
 	Texture2D fondo = LoadTexture("Assets/Fondo castillo.png");
 
-	Rectangle pantallaFondo = { 0, 0, 1024, 768 };
+	Rectangle pantallaFondo = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	Color fondoCol = WHITE;
 
+	//parametros menu de inicio
+	Texture2D menu = LoadTexture("Assets/menu de inicio.png");
+
+	Rectangle menuInicio = { 0,0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+	Color menuCol = WHITE;
+
+
+	//parametros bandera de victoria
+	Texture2D winFlag = LoadTexture("Assets/goal.png");
+
+	Color flagCol = WHITE;
+
+	Vector2 posFlag = {930,258};
+
+	float escFlag = 0.1f;
+
+
+	//Botones de menu de incio
+	Rectangle iniciar = { SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 100, 200, 100 };
+	Rectangle tutorial = { 5, SCREEN_HEIGHT / 2 + 50, 1015, 200 };
+	Rectangle salir = { SCREEN_WIDTH / 2 - 110, SCREEN_HEIGHT / 2 + 270, 200, 100 };
+	
 	//funciones del mouse
 	Vector2 posicionCursor = GetMousePosition();
 
-	// Contador de veces presionada la tecla M para mostrar/ocultar msj de sistema
-	//int contador = 1;
-
+	//condicionales para checkear estado de juego (victoria y derrota)
 	bool gameOver = false;
 	
+	bool win = false;
+
+	bool estaEnMenu = true;
+
+	
+
 
 	Game();
 	~Game();
 
 
+	void dibujarMenu();
+
 	void dibujarFondo();
+
+	
 
 	void iniciarJuego();
 
@@ -66,8 +98,12 @@ public:
 
 	void dibujarGameOver();
 
+	void dibujarFlag();
 
+	Rectangle getRectFlag();
+
+	void dibujarWin();
 	
-
+	void cerrarMenu();
 };
 

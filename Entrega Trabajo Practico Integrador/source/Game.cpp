@@ -26,42 +26,54 @@ Game::Game()
 Game::~Game()
 {
 	UnloadTexture(fondo);
+	UnloadTexture(menu);
+	UnloadTexture(winFlag);
 
 }
 
-/*void Game::mensajeSistma()
+
+void Game::dibujarMenu()
 {
+	DrawTexturePro(menu, menuInicio, menuInicio, Vector2Zero(), 0, menuCol);
+	SetTextureFilter(menu, TEXTURE_FILTER_BILINEAR);
+
+	DrawRectangle(iniciar.x,iniciar.y,iniciar.width,iniciar.height, Fade(DARKBROWN, 0.5f));
+	DrawRectangle(tutorial.x,tutorial.y,tutorial.width,tutorial.height, Fade(DARKBROWN, 0.5f));
 	
-	// Buffer de teclado que muestra y oculta mensaje del sistema
-	if (IsKeyPressed(KEY_M)) {
-		contador++;
-	}
-	// Mensaje de sistema
-	if (contador % 2 == 0) {
-		DrawText("Caballero", 2, 0, 25, BLACK);
-		DrawText("Llega al final para ganar", 2, 25, 15, BLACK);
-		DrawText(TextFormat("Posicion del caballero: %.1f, %.1f"), 2, 70, 15, BLACK);
-		DrawText(TextFormat("Posicion del mouse: X: %.2f Y: %.2f", posicionCursor.x, posicionCursor.y), 2, 50, 15, BLACK);
-	}
 
+	DrawText("INICIAR", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 75, 50, BLACK);
+	DrawText("Llega hasta el cofre de los tesoros.",255 , SCREEN_HEIGHT / 2 + 75, 25, BLACK);
+	DrawText("Utiliza las flechas direccionales para moverte y la barra espaciadora para saltar.",5, SCREEN_HEIGHT / 2 + 150, 25, BLACK);
+	DrawText("Mucha suerte!",400, SCREEN_HEIGHT / 2 + 225, 25, BLACK);
+	
 }
-*/
 
-void Game::dibujarFondo() 
+void Game::dibujarFondo()
 {
 	DrawTexturePro(fondo, pantallaFondo, pantallaFondo, Vector2Zero(), 0, fondoCol);
+	SetTextureFilter(fondo, TEXTURE_FILTER_BILINEAR);
 
 }
+
 
 void Game::iniciarJuego()
 {
 
+	estaEnMenu = true;
+
 	gameOver = false;
+	win = false;
+
+	
 
 }
 
 void Game::actualizarJuego(float _deltaTime)
 {
+
+
+	cerrarMenu();
+
 	J1->caminar(_deltaTime);
 	J1->saltar(_deltaTime);
 	J1->reiniciarPos();
@@ -83,6 +95,11 @@ void Game::actualizarJuego(float _deltaTime)
 			gameOver = true;
 		}
 	}
+
+	if (CheckCollisionRecs(J1->GetRecJ(), getRectFlag()))
+	{
+		win = true;
+	}
 }
 
 void Game::dibujarJuego()
@@ -91,25 +108,32 @@ void Game::dibujarJuego()
 	J1->dibujarPos();
 
 	for (int i = 0; i < 6; i++)
-	{
-		plataforma[i].dibujarHitboxP();
+	{	
+		//descomentar para visualizar hitbox
+		//plataforma[i].dibujarHitboxP();
 		plataforma[i].dibujarPlataforma();
 	}
+
 
 	for (int i = 0; i < 4; i++)
 	{
 		bola[i].dibujarEnemigo();
-		bola[i].dibujarHitboxE();
+		//descomentar para visualizar hitxbox
+		//bola[i].dibujarHitboxE();
 	}
 
+	dibujarFlag();
+
 	J1->dibujarPersonaje();
+	//descomentar para visualizar hitbox
+	//J1->dibujarHitboxJug();
 
 }
 
 void Game::dibujarGameOver()
 {
-	DrawText("Perdiste", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 25, RED);
-	DrawText("Presiona R para volver a intentar", SCREEN_WIDTH / 2, (SCREEN_HEIGHT/2) + 25, 25,RED);
+	DrawText("Perdiste", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2, 25, RED);
+	DrawText("Presiona R para volver a intentar", SCREEN_WIDTH / 2 - 100, (SCREEN_HEIGHT/2) + 25, 25,RED);
 	
 	if (IsKeyPressed(KEY_R))
 	{
@@ -117,4 +141,40 @@ void Game::dibujarGameOver()
 		J1->reiniciarPos();
 	}
 }
+
+void Game::dibujarFlag()
+{
+	DrawTextureEx(winFlag, posFlag, 0, escFlag, flagCol);
+	SetTextureFilter(winFlag, TEXTURE_FILTER_BILINEAR);
+}
+
+Rectangle Game::getRectFlag()
+{
+	return Rectangle{posFlag.x,posFlag.y, (float)winFlag.width * escFlag, (float)winFlag.height * escFlag};
+}
+
+void Game::dibujarWin()
+{
+
+	DrawText("GANASTE!", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2, 25, RED);
+	DrawText("Presiona R para volver a iniciar", SCREEN_WIDTH / 2 - 100, (SCREEN_HEIGHT / 2) + 25, 25, RED);
+	
+	if (IsKeyPressed(KEY_R))
+	{
+		iniciarJuego();
+		J1->reiniciarPos();
+	}
+}
+
+void Game::cerrarMenu()
+{
+
+	if (CheckCollisionPointRec(posicionCursor, iniciar) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	{
+		estaEnMenu = false;
+
+	}
+}
+
+
 

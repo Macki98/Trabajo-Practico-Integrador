@@ -44,8 +44,8 @@ public:
 	Rectangle GetRecE();
 	void dibujarHitboxE();
 	void dibujarEnemigo();
-
-	void checkLimites(float _deltaTime);
+	
+	
 
 	void patrullaje1(float _deltaTime);
 	void patrullaje2(float _deltaTime);

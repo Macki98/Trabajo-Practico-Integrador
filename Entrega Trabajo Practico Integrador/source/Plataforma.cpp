@@ -24,11 +24,13 @@ Plataforma::~Plataforma()
 	UnloadTexture(plataforma);
 }
 
+//funcion que devuelve el rectangulo que engloba la plataforma y funciona como hitbox
 Rectangle Plataforma::GetRect()
 {
 	return Rectangle{posPlataforma.x,posPlataforma.y, (float)plataforma.width*escPlataforma, (float)plataforma.height*escPlataforma};
 }
 
+//funcion que muestra la hitbox de la plataforma
 void Plataforma::dibujarHitboxP()
 {
 	DrawRectangleLinesEx(GetRect(),5, RED);
@@ -37,4 +39,5 @@ void Plataforma::dibujarHitboxP()
 void Plataforma::dibujarPlataforma()
 {
 	DrawTextureEx(plataforma,posPlataforma,0,escPlataforma,colPlataforma);
+	SetTextureFilter(plataforma, TEXTURE_FILTER_BILINEAR);
 }

@@ -28,6 +28,7 @@ Jugador::~Jugador()
     UnloadSound(jump);
 }
 
+//Funcion que nos devuelve el rectangulo que envuelve al jugador y funciona como hitbox
 Rectangle Jugador::GetRecJ()
 {
     return Rectangle{ posJugador.x, posJugador.y,(float)personaje.width * escJugador, (float)personaje.height * escJugador };
@@ -40,24 +41,21 @@ float Jugador::GetVelocidad()
 
 
 
-//Detectar colisiones con plataforma
+//Detectar colisiones con plataforma e impide que el jugador se caiga
 void Jugador::checkColisionesPlat(bool _colisiona)
 {
-    
-    //Color colorLinea = _colisiona ? RED : GREEN;
-    //DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
-    
+
     if (_colisiona) {
          
         velJugador.y = 0;
     }
-   
 }
 
-void Jugador::checkColisionesEne(bool _colisiona)
+
+void Jugador::dibujarHitboxJug()
 {
-    Color colorLinea = _colisiona ? RED : GREEN;
-    DrawRectangleLinesEx(GetRecJ(), 5, colorLinea);
+    
+    DrawRectangleLinesEx(GetRecJ(), 5, GREEN);
 
       
 }
@@ -68,7 +66,10 @@ void Jugador::checkColisionesEne(bool _colisiona)
 void Jugador::dibujarPersonaje()
 {
     DrawTextureEx(personaje, posJugador, rotJugador, escJugador, colJugador);
+    SetTextureFilter(personaje, TEXTURE_FILTER_BILINEAR);
 }
+
+
 
 
 // Aplicamos movimiento horizontal  (izq y der ) sobre el pesonaje utilizando flecha izquierda y derecha 
@@ -127,5 +128,5 @@ void Jugador::reiniciarPos()
 
 void Jugador::dibujarPos()
 {
-    DrawText(TextFormat("Posicion del jugador: X: %.2f Y: %.2f", posJugador.x, posJugador.y), 2, 50, 25, BLACK);
+    DrawText(TextFormat("Posicion del jugador: X: %.2f Y: %.2f", posJugador.x, posJugador.y), 2, 20, 25, BLACK);
 }

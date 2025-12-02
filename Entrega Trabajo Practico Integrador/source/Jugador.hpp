@@ -62,10 +62,11 @@ public:
 
    
     void checkColisionesPlat(bool _colisiona);
-    void checkColisionesEne(bool _colisiona);
+    void dibujarHitboxJug();
 
     
     void dibujarPersonaje();
+    
     Rectangle GetRecJ();
 
     float GetVelocidad();
